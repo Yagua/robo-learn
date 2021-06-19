@@ -1,6 +1,6 @@
 BODY = [
     "Hair\n\nCabello",
-    "Ayes\n\nOjos",
+    "Eyes\n\nOjos",
     "Nose\n\nNariz",
     "Forehead\n\nFrente",
     "Ear\n\nOreja",
