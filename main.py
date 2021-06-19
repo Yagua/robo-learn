@@ -5,7 +5,14 @@ from options import *
 
 #variables
 timer = 6000
+popup_timer = 60
 counter = 0
+
+def seconds_to_miliseconds(value):
+    if value == None: return
+    result = 0
+    result = value * 1000
+    return result
 
 #list selector
 def list_selector():
@@ -19,12 +26,14 @@ def list_selector():
 
 #overrite TIMER to --TIMER argument or take the default value
 timer = args.timer or timer
+popup_timer = seconds_to_miliseconds(args.notifitm) or popup_timer
 
 def main():
     global timer; global counter
     selection = list_selector()[0]
     if len(selection) == counter: counter = 0
-    os.system("notify-send --icon=none \"%s\"" % (selection[counter]))
+    os.system("notify-send -t %d --icon=none \"%s\""
+            % (popup_timer, selection[counter]))
     counter += 1
     Timer(timer, main).start()
 
