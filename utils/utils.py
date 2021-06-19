@@ -1,10 +1,5 @@
-from .body import *
-from .days import *
-from .months import *
-from .w_sentences import *
-from .p_sentences import *
-from .v_sentences import *
-
+import sys
+import os
 exc_message = """
 '########:::'#######::'########:::'#######:::::::::::'##:::::::'########::::'###::::'########::'##::: ##:
  ##.... ##:'##.... ##: ##.... ##:'##.... ##:::::::::: ##::::::: ##.....::::'## ##::: ##.... ##: ###:: ##:
@@ -15,3 +10,27 @@ exc_message = """
  ##:::. ##:. #######:: ########::. #######::::::::::: ########: ########: ##:::: ##: ##:::. ##: ##::. ##:
 ..:::::..:::.......:::........::::.......::::::::::::........::........::..:::::..::..:::::..::..::::..::
 """
+
+sys_exit = sys.exit
+sys_command = os.system
+
+def convert_time(value, opt):
+    if value != None and opt != None:
+        result = 0
+        if opt == "m":
+            result = value * 1000
+        elif opt == "d":
+            result = value // 1000
+        return result
+    return None
+
+def print_template(mess, timer, popup_timer, list):
+    template = """%s
+Current options:
+  Timer: %ds
+  Popup Timer: %ds
+  List Selected: %s
+
+Executing...
+    """ % (mess, timer, popup_timer, list)
+    print(template)

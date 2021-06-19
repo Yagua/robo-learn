@@ -1,49 +1,35 @@
 from threading import Timer
-import os
-from lists import *
-from options import *
+from pathlib import Path
+import input_file as inp
+import options
+import utils
 
 #variables
+args = options.args
 timer = 6000
-popup_timer = 60
+popup_timer = utils.convert_time(60, "m")
 counter = 0
-
-def seconds_to_miliseconds(value):
-    if value == None: return
-    result = 0
-    result = value * 1000
-    return result
+home = Path(__file__).parent / "lists"
 
 #list selector
 def list_selector():
-    global args
-    if args.days: return [DAYS, "Days"]
-    elif args.months: return [MONTHS, "Months"]
-    elif args.body: return [BODY, "Body"]
-    elif args.vsentences: return [V_SENTENCES, "Verbs Sentences"]
-    elif args.psentences: return [P_SENTENCES, "Phrasal verbs Sentences"]
-    else: return [W_SENTENCES, "Words Sentences (default)"]
+    global args; global home
+    if args.filepath: return inp.read_json(args.filepath, home)
+    else: print("you need pass a file name"); utils.sys_exit()
 
-#overrite TIMER to --TIMER argument or take the default value
+#overrite timers and -fp to -t and -nt options or take the default values
 timer = args.timer or timer
-popup_timer = seconds_to_miliseconds(args.notifitm) or popup_timer
+popup_timer = utils.convert_time(args.notifitm, "m") or popup_timer
+home = not args.filepath or home
 
 def main():
     global timer; global counter
-    selection = list_selector()[0]
+    selection = list_selector()
     if len(selection) == counter: counter = 0
-    os.system("notify-send -t %d --icon=none \"%s\""
+    utils.sys_command("notify-send -t %d --icon=none \"%s\""
             % (popup_timer, selection[counter]))
     counter += 1
     Timer(timer, main).start()
 
-template = """%s
-Current options:
-  Timer: %ds
-  List Selected: %s
-
-Executing...
-""" % (exc_message, timer, list_selector()[1])
-print(template)
-
 main()
+utils.print_template(utils.exc_message, timer, popup_timer, args.filepath)
