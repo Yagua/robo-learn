@@ -7,7 +7,7 @@ import utils
 #variables
 args = options.args
 timer = 6000
-popup_timer = utils.convert_time(60, "m")
+popup_timer = 60
 counter = 0
 home = Path(__file__).parent / "lists"
 
@@ -15,13 +15,15 @@ home = Path(__file__).parent / "lists"
 def list_selector():
     global args; global home
     if args.filepath: return inp.read_json(args.filepath, home)
-    else: print("you need pass a file name"); utils.sys_exit()
+    elif args.custompath: return inp.read_json(args.custompath, None)
+    else: print("You need a list to reproduce\nTip: see --help"); utils.sys_exit()
 
-#overrite timers and -fp to -t and -nt options or take the default values
+#overrite timers and home or take the default values
 timer = args.timer or timer
-popup_timer = utils.convert_time(args.notifitm, "m") or popup_timer
-home = not args.filepath or home
+popup_timer = utils.convert_time(args.notificationtime or popup_timer, "m")
+home = args.custompath or home
 
+#main function
 def main():
     global timer; global counter
     selection = list_selector()
@@ -31,5 +33,11 @@ def main():
     counter += 1
     Timer(timer, main).start()
 
+#start
 main()
-utils.print_template(utils.exc_message, timer, popup_timer, args.filepath)
+utils.print_template(
+    utils.exc_message,
+    timer,
+    utils.convert_time(popup_timer, "d"),
+    args.filepath
+)

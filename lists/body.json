@@ -1,0 +1,22 @@
+{
+    "[1]": "Hair\n\nCabello",
+    "[2]": "Eyes\n\nOjos",
+    "[3]": "Nose\n\nNariz",
+    "[4]": "Forehead\n\nFrente",
+    "[5]": "Ear\n\nOreja",
+    "[6]": "Tooth/Teeth\n\nDiente/Dientes",
+    "[7]": "Mouth\n\nBoca",
+    "[8]": "Neck\n\nCuello",
+    "[9]": "Chest\n\nPecho",
+    "[10]": "Shoulders\n\nHombros",
+    "[11]": "Elbows\n\nCodos",
+    "[12]": "Arms\n\nBrazos",
+    "[13]": "Hands\n\nManos",
+    "[14]": "Fingers\n\nDedos",
+    "[15]": "Stomach\n\nEstomago",
+    "[16]": "Pierna\n\nLegs",
+    "[17]": "Foot/Feet\n\nPie/Pies",
+    "[18]": "Ankles\n\nTobillos",
+    "[19]": "Knees\n\nRodillas"
+}
+
