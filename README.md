@@ -1,4 +1,4 @@
-# Robo-learn
+# Robo-notify
 
 Simple robot  to perform repetitive notifications using dunst.
 It is useful for tasks such as reminders or learning language
@@ -15,17 +15,17 @@ through the aforementioned repetitions.
 
 1. clone repo
 ```txt
-git clone https://github.com/Yagua/robo-learn
+git clone https://github.com/Yagua/robo-notify
 ```
 2. execute main script
 ```bash
-cd robo-learn/
+cd robo-notify/
 python3 main.py
 
-# Recommended to make an alias with this instruction for example 'robolearn'
+# Recommended to make an alias with this instruction for example 'robonotify'
 
 # in .bashrc
-alias robolearn="python3 path_robo-learn/main.py"
+alias robonotify="python3 path_robo-notify/main.py"
 ```
 
 ## Options
@@ -48,14 +48,11 @@ the file name, or simply passing an absolute path of a file to reprocess it.
 ## Example of use
 
 ```bash
-# considering that I put a file called 'days' in the robot's home directory
+# considering that I put a file called 'w_sentences' in the robot's home directory
 # -t 1 second time for repetitions
 # -nt time of 2 seconds duration of popup notifications
 
-robolearn -fp days -t 1 -nt 2
+robonotify -fp days -t 1 -nt 2
 ```
 ## Preview
-
-<div align="center">
-    <img src="./media/robolearnprev.gif" alt="prev.gif"/>
-</div>
+![prev](./media/roboprev.gif)
