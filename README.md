@@ -10,6 +10,7 @@ through the aforementioned repetitions.
 
 - dunst
 - python3+
+- libnotify-bin (in ubuntu and based distros "notify-osd")
 
 ## Usage
 
