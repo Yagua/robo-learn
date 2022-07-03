@@ -1,6 +1,4 @@
-import sys
-import os
-exc_message = """
+exec_message = """
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :########:::'#######::'########:::'#######:::::::::::'##::: ##::'#######::'########:'####:'########:'##:::'##:
 :##.... ##:'##.... ##: ##.... ##:'##.... ##:::::::::: ###:: ##:'##.... ##:... ##..::. ##:: ##.....::. ##:'##::
@@ -9,32 +7,29 @@ exc_message = """
 :##.. ##::: ##:::: ##: ##.... ##: ##:::: ##:........: ##. ####: ##:::: ##:::: ##::::: ##:: ##...::::::: ##::::
 :##::. ##:: ##:::: ##: ##:::: ##: ##:::: ##:::::::::: ##:. ###: ##:::: ##:::: ##::::: ##:: ##:::::::::: ##::::
 :##:::. ##:. #######:: ########::. #######::::::::::: ##::. ##:. #######::::: ##::::'####: ##:::::::::: ##::::
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 """
-
-#func alias
-sys_exit = sys.exit
-sys_command = os.system
 
 #convert seconds to miliseconds or viceversa
 def convert_time(value, opt):
-    if value != None and opt != None:
-        result = 0
-        if opt == "m":
-            result = value * 1000
-        elif opt == "d":
-            result = value // 1000
-        return result
-    return None
+    """
+    opts:
+        m => miliseconds
+        s => seconds
+    """
+    values = {
+        "m": value * 1000,
+        "s": value // 1000
+    }
+    return values.get(opt, 0)
 
 #print setup template
-def print_template(mess, timer, popup_timer, list):
-    template = """%s
+def print_template(timer, popup_timer, list):
+    template = f"""{exec_message}
 Current options:
-  Timer: %ds
-  Popup Timer: %ds
-  List Selected: %s
+  Timer: {timer}
+  Popup Timer: {popup_timer}
+  List Selected: {list}
 
-Executing...
-    """ % (mess, timer, popup_timer, list)
+Executing..."""
     print(template)

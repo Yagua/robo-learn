@@ -37,7 +37,7 @@ alias robonotify="python3 path_robo-notify/main.py"
 | -t  TIMER, --timer TIMER                         | `time in seconds for displaying notifications (default 600s [10 min])` |
 | -nt NOTIFICATIONTIME --notifitm NOTIFICATIONTIME | `time in seconds for the duration of popup notification)`              |
 | -cp CUSTOMPATH, --custompath CUSTOMPATH          | `print list from a custom filepath`                                    |
-| -fp FILEPATH, --filepath FILEPATH                | `file name saved in list directory`                                    |
+| -fn FILENAME, --filename FILENAME                | `file name saved in list directory`                                    |
 
 ## Note
 
@@ -53,7 +53,7 @@ the file name, or simply passing an absolute path of a file to reprocess it.
 # -t 1 second time for repetitions
 # -nt time of 2 seconds duration of popup notifications
 
-robonotify -fp days -t 1 -nt 2
+robonotify -fn days -t 1 -nt 2
 ```
 ## Preview
 ![prev](./media/roboprev.gif)

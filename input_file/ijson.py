@@ -1,24 +1,37 @@
-import utils
+from sys import exit
 import json
 
 #unpack json object
 def unpack_object(data):
-    result = []
-    for k in data:
-        result.append(data[k])
+    """
+    it admits any kind of values exept other objects.
+    if it finds a dict-based vale, that content will be skiped
+    """
+    result = {}
+    for key, val in data.items():
+        if type(val) == dict: continue
+        elif type(val) == list:
+            str_list = ""
+            for item in val:
+                str_list += f"{item}\n"
+            result[key] = str_list
+        else:
+            result[key] = str(val)
     return result
 
-#read json file and return it's content
-def read_json(file, home):
+# read json file and return it's content
+def read_json(home, file):
     try:
-        path = "%s/%s.json" %(home, file)
-        if home == None: path = path = file
+        path = f"{home}/{file}.json"
+        if home == None: path = file
         json_file = open(path)
         data = json.load(json_file)
+        json_file.close()
         return unpack_object(data)
     except(FileNotFoundError):
         print("[Error]: File not Found")
-        utils.sys_exit()
+        exit(1)
     except(json.decoder.JSONDecodeError):
         print("[Error]: Bad JSON format in file", file)
-        utils.sys_exit()
+        exit(1)
+
